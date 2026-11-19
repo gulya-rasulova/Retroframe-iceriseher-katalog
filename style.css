@@ -1,0 +1,380 @@
+:root {
+    --bg-dark: #141311;        /* Tünd kömür / qədim daş kölgəsi */
+    --card-bg: #181614;        /* Kart daxili fonu */
+    --gold: #C8A26B;           /* Qumdaşı qızılı */
+    --gold-dim: rgba(200, 162, 107, 0.35);
+    --text-light: #F3EFEA;     /* İsti ağ */
+    --text-muted: #B8B0A4;     /* Yumşaq bej-boz */
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    /* Zərif kağız/daş tekstur effekti */
+    background-image: radial-gradient(circle at 50% 30%, #221f1b 0%, #141311 75%);
+}
+
+/* Sağ Üst Səhifə Sayğacı */
+.progress-bar {
+    position: fixed;
+    top: 24px;
+    right: 32px;
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    z-index: 100;
+}
+
+#current-page-label {
+    color: var(--gold);
+    font-weight: 600;
+}
+
+/* Əsas Konteyner */
+#catalog-container {
+    width: 100%;
+    max-width: 1100px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Hər bir Kataloq Səhifəsi */
+.catalog-page {
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.catalog-page.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Şəkildəki Qızılı Çərçivəli Kataloq Vərəqi */
+.museum-frame {
+    width: 100%;
+    max-width: 460px; /* Kataloq vərəqi nisbəti */
+    min-height: 660px;
+    background-color: var(--card-bg);
+    border: 1.5px solid var(--gold);
+    padding: 28px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), inset 0 0 40px rgba(200, 162, 107, 0.04);
+}
+
+/* Daxili incə ikinci xətt (Lüks kitab effekti) */
+.museum-frame::after {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(200, 162, 107, 0.18);
+    pointer-events: none;
+}
+
+/* Üst Hissə: Xətt və 01 Rəqəmi */
+.frame-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    z-index: 2;
+}
+
+.gold-line {
+    flex: 1;
+    height: 1px;
+    background-color: var(--gold-dim);
+}
+
+.page-number {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    color: var(--gold);
+    letter-spacing: 1px;
+}
+
+/* Qapaq Mərkəz Məzmunu */
+.cover-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    z-index: 2;
+    margin: auto 0;
+}
+
+.emblem {
+    opacity: 0.9;
+    transition: transform 0.6s ease;
+}
+
+.museum-frame:hover .emblem {
+    transform: rotate(45deg);
+}
+
+.main-title {
+    font-family: var(--font-serif);
+    font-size: 3.1rem;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+}
+
+.subtitle {
+    font-family: var(--font-sans);
+    font-size: 0.98rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-light);
+    max-width: 280px;
+}
+
+/* Alt Hissə və Düymə */
+.cover-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    z-index: 2;
+    border-top: 1px solid var(--gold-dim);
+    padding-top: 20px;
+}
+
+.org-tag {
+    font-size: 0.72rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.explore-btn {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.explore-btn:hover {
+    background-color: var(--gold);
+    color: var(--bg-dark);
+}
+
+.explore-btn .arrow {
+    transition: transform 0.3s ease;
+}
+
+.explore-btn:hover .arrow {
+    transform: translateX(4px);
+}
+
+/* Mobil Uyğunluq */
+@media (max-width: 520px) {
+    .museum-frame {
+        min-height: 560px;
+        padding: 22px;
+    }
+    .main-title {
+        font-size: 2.3rem;
+    }
+}
+
+
+/* =========================================
+   SƏHİFƏ 02 (VƏ NÖVBƏTİ HEKAYƏ SƏHİFƏLƏRİ) CSS
+   ========================================= */
+
+.story-frame {
+    max-width: 480px;
+    min-height: 680px;
+    gap: 18px;
+}
+
+.chapter-tag {
+    font-size: 0.68rem;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.photo-box {
+    width: 100%;
+    height: auto;
+    max-height:420 px;
+    border: 1px solid var(--gold-dim);
+    overflow: hidden;
+    position: relative;
+    background-color: #0e0d0c;
+    z-index: 2;
+}
+
+.catalog-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s ease, filter 0.6s ease;
+}
+
+.museum-frame:hover .catalog-photo {
+    transform: scale(1.03);
+}
+
+.story-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    z-index: 2;
+    padding: 0 6px;
+}
+
+.story-title {
+    font-family: var(--font-serif);
+    font-size: 1.85rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.8px;
+}
+
+.short-gold-divider {
+    width: 48px;
+    height: 1px;
+    background-color: var(--gold);
+    opacity: 0.7;
+    margin: 2px 0;
+}
+
+.story-text {
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--text-light);
+}
+
+/* Alt Keçid Düymələri */
+.page-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--gold-dim);
+    padding-top: 14px;
+    z-index: 2;
+}
+
+.nav-btn {
+    background: transparent;
+    border: 1px solid rgba(200, 162, 107, 0.45);
+    color: var(--text-light);
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    letter-spacing: 1px;
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    border-color: var(--gold);
+    background-color: var(--gold);
+    color: var(--bg-dark);
+}
+
+/* =========================================
+   SƏHİFƏ 10 (YEKUN SƏRGİ) CSS
+   ========================================= */
+
+.finale-frame {
+    max-width: 480px;
+    min-height: 680px;
+}
+
+.finale-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    z-index: 2;
+    margin: auto 0;
+    padding: 0 8px;
+}
+
+.finale-title {
+    font-family: var(--font-serif);
+    font-size: 2.35rem;
+    font-weight: 500;
+    letter-spacing: 3px;
+    color: var(--gold);
+}
+
+.finale-org {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--text-light);
+}
+
+.finale-org em {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.credits-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 6px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.credit-item {
+    line-height: 1.5;
+}
+
+.credit-label {
+    color: var(--gold);
+    font-weight: 500;
+    margin-right: 4px;
+}
