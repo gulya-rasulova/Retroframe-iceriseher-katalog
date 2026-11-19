@@ -379,8 +379,10 @@ body {
 .credit-label {
     color: var(--gold);
     font-weight: 500;
+    margin-right: 4px;
+}
 
-    #catalog-container,
+#catalog-container,
 .catalog-page,
 .catalog-page.active,
 .museum-frame {
@@ -392,7 +394,4 @@ body {
 #catalog-container,
 .catalog-page.active {
     justify-content: center !important;
-}
-
-    margin-right: 4px;
 }
