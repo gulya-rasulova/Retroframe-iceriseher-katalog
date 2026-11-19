@@ -21,7 +21,7 @@ body {
     font-family: var(--font-sans);
     min-height: 100vh;
     display: flex;
-    justify-content: center;
+    margin: 0 auto;
     align-items: center;
     overflow-x: hidden;
     /* Zərif kağız/daş tekstur effekti */
