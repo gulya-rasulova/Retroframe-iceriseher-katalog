@@ -21,10 +21,10 @@ body {
     font-family: var(--font-sans);
     min-height: 100vh;
     display: flex;
-    margin: 0 auto;
+    justify-content: center;
+    margin: 0;
     align-items: center;
     overflow-x: hidden;
-    /* Zərif kağız/daş tekstur effekti */
     background-image: radial-gradient(circle at 50% 30%, #221f1b 0%, #141311 75%);
 }
 
@@ -49,6 +49,8 @@ body {
 #catalog-container {
     width: 100%;
     max-width: 1100px;
+    min-height: 100vh;
+    justify-content: center;
     padding: 20px;
     display: flex;
     margin: 0 auto;
@@ -59,6 +61,7 @@ body {
 .catalog-page {
     width: 100%;
     display: none;
+    justify-content: center;
     margin: 0 auto;
     align-items: center;
     opacity: 0;
@@ -69,6 +72,7 @@ body {
 .catalog-page.active {
     display: flex;
     justify-content: center;
+    align-items: center;
     opacity: 1;
     transform: translateY(0);
 }
@@ -76,8 +80,8 @@ body {
 /* Şəkildəki Qızılı Çərçivəli Kataloq Vərəqi */
 .museum-frame {
     width: 100%;
-    max-width: 460px; /* Kataloq vərəqi nisbəti */
-    min-height: 660px;
+    max-width: 600px; /* Kataloq vərəqi nisbəti */
+    min-height: 780px;
     background-color: var(--card-bg);
     border: 1.5px solid var(--gold);
     padding: 28px 32px;
@@ -377,11 +381,6 @@ body {
     line-height: 1.5;
 }
 
-.credit-label {
-    color: var(--gold);
-    font-weight: 500;
-    margin-right: 4px;
-}
 
 #catalog-container,
 .catalog-page,
@@ -395,4 +394,9 @@ body {
 #catalog-container,
 .catalog-page.active {
     justify-content: center !important;
+}
+.credit-label {
+    color: var(--gold);
+    font-weight: 500;
+    margin-right: 4px;
 }
