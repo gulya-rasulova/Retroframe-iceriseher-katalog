@@ -68,6 +68,7 @@ body {
 
 .catalog-page.active {
     display: flex;
+    justify-content: center;
     opacity: 1;
     transform: translateY(0);
 }
